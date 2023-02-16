@@ -1,0 +1,5 @@
+@media screen and (max-width: 540px) {
+  .popup__title_size_small {
+    margin-bottom: 44px;
+  }
+}

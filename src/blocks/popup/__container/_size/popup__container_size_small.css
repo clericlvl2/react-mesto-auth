@@ -1,0 +1,9 @@
+.popup__container_size_small {
+  min-height: 181px;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__container_size_small {
+    min-height: 164px;
+  }
+}

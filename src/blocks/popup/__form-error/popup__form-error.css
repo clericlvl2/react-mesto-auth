@@ -1,0 +1,9 @@
+.popup__form-error {
+  min-height: 30px;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  opacity: 0;
+  transition: opacity .16s;
+}

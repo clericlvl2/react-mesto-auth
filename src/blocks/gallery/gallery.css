@@ -1,0 +1,15 @@
+.gallery {
+  width: calc(100% - 48px*2);
+  max-width: 880px;
+  min-width: 288px;
+  margin: 0 auto;
+  padding: 0 0 66px 0;
+}
+
+@media screen and (max-width: 540px) {
+  .gallery {
+    width: calc(100% - 19px*2);
+    min-width: 288px;
+    padding-bottom: 48px;
+  }
+}

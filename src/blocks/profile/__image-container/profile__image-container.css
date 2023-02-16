@@ -1,0 +1,7 @@
+.profile__image-container {
+  position: relative;
+  min-width: 120px;
+  min-height: 120px;
+  margin: 0;
+  padding: 0;
+}

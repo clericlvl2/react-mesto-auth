@@ -1,0 +1,12 @@
+.popup__form-field {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: column;
+  min-height: 38px;
+  margin: 0;
+}
+
+.popup__form-field:last-of-type {
+  margin: 0;
+}

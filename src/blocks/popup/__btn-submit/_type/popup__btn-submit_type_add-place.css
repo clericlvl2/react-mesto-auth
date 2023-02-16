@@ -1,0 +1,9 @@
+.popup__btn-submit_type_add-place {
+  margin: 17px 0 0 0;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__btn-submit_type_add-place {
+    margin-top: 13px;
+  }
+}

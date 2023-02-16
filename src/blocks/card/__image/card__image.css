@@ -1,0 +1,15 @@
+.card__image {
+  width: 100%;
+  min-height: 282px;
+  max-height: 282px;
+  margin: 0 0 24px 0;
+  object-fit: cover;
+  object-position: center;
+  color: black;
+  cursor: pointer;
+  transition: filter .24s;
+}
+
+.card__image:hover {
+  filter: brightness(80%);
+}

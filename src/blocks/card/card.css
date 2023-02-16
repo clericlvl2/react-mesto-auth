@@ -1,0 +1,10 @@
+.card {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #fff;
+}

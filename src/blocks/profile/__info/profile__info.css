@@ -1,0 +1,20 @@
+.profile__info {
+  display: grid;
+  grid: auto / fit-content(296px) 24px;
+  grid-template-areas:
+      'name btn'
+      'desc .';
+  align-items: end;
+  grid-gap: 8px 20px;
+}
+
+@media screen and (max-width: 540px) {
+  .profile__info {
+    margin: 0 0 33px 0;
+    grid-template-columns: 18px fit-content(282px) 18px;
+    grid-template-areas:
+      '. name btn'
+      '. desc .';
+    gap: 6px 12px;
+  }
+}
