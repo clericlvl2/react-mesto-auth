@@ -1,0 +1,7 @@
+.auth__button_disabled {
+  opacity: 0.85;
+}
+
+.auth__button_disabled:hover {
+  opacity: 0.85;
+}

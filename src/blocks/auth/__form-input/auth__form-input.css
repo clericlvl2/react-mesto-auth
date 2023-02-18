@@ -1,0 +1,16 @@
+.auth__form-input {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 10px 4px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    line-height: 17px;
+    color: #fff;
+    background-color: black;
+    box-sizing: border-box;
+}
+
+.auth__form-input:last-of-type {
+    margin: 0;
+}
