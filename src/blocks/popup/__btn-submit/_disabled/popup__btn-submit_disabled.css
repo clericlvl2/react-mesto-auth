@@ -1,11 +1,7 @@
 .popup__btn-submit_disabled {
-  background: transparent;
-  box-sizing: border-box;
-  border: 1px solid #000;
-  color: #000;
-  opacity: .2;
+  background: rgba(0, 0, 0, .8);
 }
 
 .popup__btn-submit_disabled:hover {
-  background: transparent;
+  background: rgba(0, 0, 0, .8);
 }

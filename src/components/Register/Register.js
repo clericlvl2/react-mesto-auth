@@ -25,15 +25,18 @@ const Register = ({ onCallInfoTooltip }) => {
       return;
     }
 
-    auth.register(formValue.email, formValue.password).then(data => {
-      debugger;
-      if (data.email !== undefined) {
-        navigate('/signin', { replace: true });
-        onCallInfoTooltip({ isError: false });
-      } else {
-        onCallInfoTooltip({ isError: true });
-      }
-    });
+    auth
+      .register(formValue.email, formValue.password)
+      .then(data => {
+        if (data.email !== undefined) {
+          localStorage.setItem('email', data.email);
+          navigate('signin', { replace: true });
+          onCallInfoTooltip({ isError: false });
+        } else {
+          onCallInfoTooltip({ isError: true });
+        }
+      })
+      .catch(console.error);
   };
   return (
     <div className="auth">

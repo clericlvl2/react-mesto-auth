@@ -1,0 +1,10 @@
+.popup__tooltip-icon_type_success {
+    background: #fff url('./../../../../images/success-icon.svg') no-repeat;
+    background-position: 50% 60px, center;
+}
+
+@media screen and (max-width: 540px) {
+    .popup__tooltip-icon_type_success {
+        background-position: 50% 50px, center;
+    }
+}

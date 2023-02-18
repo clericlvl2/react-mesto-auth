@@ -1,6 +1,6 @@
 {
   "name": "mesto-react",
-  "homepage": "http://clericlvl2.github.io/mesto-react",
+  "homepage": "http://clericlvl2.github.io/react-mesto-auth",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

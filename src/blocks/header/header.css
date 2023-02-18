@@ -6,7 +6,7 @@
   margin: 0 auto;
   padding: 45px 0 0 0;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   border-bottom: 1px solid rgba(84, 84, 84, .7);
 }

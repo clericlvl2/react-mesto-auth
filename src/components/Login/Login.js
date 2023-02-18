@@ -34,7 +34,7 @@ const Login = ({ onLogin, onCallInfoTooltip }) => {
       })
       .catch(err => {
         onCallInfoTooltip({ isError: true });
-        console.log(err);
+        console.error(err);
       })
       .finally(() => {
         setIsLoading(false);

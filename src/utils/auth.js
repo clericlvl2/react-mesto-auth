@@ -10,7 +10,7 @@ export const register = (email, password) => {
   })
     .then(response => response.json())
     .then(res => res.data) // data = { _id: string, email: string }
-    .catch(err => console.log(err));
+    .catch(console.error);
 };
 export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
@@ -26,7 +26,7 @@ export const authorize = (email, password) => {
         return data; // data = { token: string }
       }
     })
-    .catch(err => console.log(err));
+    .catch(console.error);
 };
 
 export const checkToken = token => {
@@ -38,5 +38,6 @@ export const checkToken = token => {
     },
   })
     .then(res => res.json())
-    .then(res => res.data); // data = { _id: string, email: string }
+    .then(res => res.data) // data = { _id: string, email: string }
+    .catch(console.error);
 };

@@ -1,0 +1,20 @@
+.popup__tooltip-icon {
+  z-index: 10;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 330px;
+  padding: 60px 36px;
+  color: #000;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
+@media screen and (max-width: 540px) {
+  .popup__tooltip-icon {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 50px 18px;
+  }
+}

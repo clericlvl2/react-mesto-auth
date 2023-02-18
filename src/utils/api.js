@@ -1,4 +1,4 @@
-import API_ERROR_CONFIG from './constants';
+import { API_ERROR_CONFIG } from './constants';
 
 class Api {
   constructor(options) {

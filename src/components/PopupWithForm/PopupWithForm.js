@@ -17,11 +17,6 @@ const PopupWithForm = ({
     smallContainer: isSmall ? 'popup__container_size_small' : '',
     smallTitle: isSmall ? 'popup__title_size_small' : '',
   };
-  const spinnerWrapper = {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-  };
 
   return (
     <section className={`popup popup_type_${name} ${styles.openedPopup}`}>
@@ -33,18 +28,14 @@ const PopupWithForm = ({
         >
           {children}
           <button
-            className={`popup__btn-submit popup__btn-submit_type_${name}`}
+            className={`popup__btn-submit popup__btn-submit_type_${name} ${
+              isLoading ? 'popup__btn-submit_disabled' : ''
+            }`}
             type="submit"
             onClick={onSubmit}
             disabled={isLoading}
           >
-            {isLoading ? (
-              <div style={spinnerWrapper}>
-                <Spinner />
-              </div>
-            ) : (
-              buttonText
-            )}
+            {isLoading ? <Spinner /> : buttonText}
           </button>
         </form>
         <button type="button" className="popup__btn-exit" onClick={onClose} />
