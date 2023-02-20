@@ -1,46 +1,17 @@
-import React, { useState } from 'react';
-import * as auth from '../../utils/auth';
+import React from 'react';
 import Spinner from '../Spinner/Spinner';
+import { useForm } from '../../hooks/useForm';
 
-const Login = ({ onLogin, onCallInfoTooltip }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [formValue, setFormValue] = useState({
+const Login = ({ onSubmit, isLoading }) => {
+  const { values, handleChange } = useForm({
     email: '',
     password: '',
   });
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    onSubmit(values);
   };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (!formValue.email || !formValue.password) {
-      return;
-    }
-    setIsLoading(true);
-    auth
-      .authorize(formValue.email, formValue.password)
-      .then(data => {
-        if (data.token) {
-          setFormValue({ email: '', password: '' });
-          onLogin(data.token);
-        }
-      })
-      .catch(err => {
-        onCallInfoTooltip({ isError: true });
-        console.error(err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  };
-
   return (
     <div className="auth">
       <h1 className="auth__title">Вход</h1>
@@ -52,7 +23,7 @@ const Login = ({ onLogin, onCallInfoTooltip }) => {
           name="email"
           type="email"
           placeholder="Email"
-          value={formValue.email}
+          value={values.email}
           onChange={handleChange}
           className="auth__form-input"
         />
@@ -63,7 +34,7 @@ const Login = ({ onLogin, onCallInfoTooltip }) => {
           name="password"
           type="password"
           placeholder="Пароль"
-          value={formValue.password}
+          value={values.password}
           onChange={handleChange}
           className="auth__form-input"
         />

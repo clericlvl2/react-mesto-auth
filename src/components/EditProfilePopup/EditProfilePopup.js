@@ -1,46 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import {useForm} from "../../hooks/useForm";
 
 const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
-  const [userName, setUserName] = useState('Имя...');
-  const [userInfo, setUserInfo] = useState('Описание...');
-
   const currentUser = React.useContext(CurrentUserContext);
+  const { values, handleChange, setValues } = useForm({
+    name: 'Имя...',
+    about: 'Описание...',
+  })
 
   const setCurrentUserData = () => {
-    setUserName(currentUser.name);
-    setUserInfo(currentUser.about);
+    setValues({
+      name: currentUser.name,
+      about: currentUser.about,
+    })
   };
-  const handleNameChange = evt => {
-    setUserName(evt.target.value);
-  };
-  const handleInfoChange = evt => {
-    setUserInfo(evt.target.value);
-  };
+
   const handleSubmit = evt => {
     evt.preventDefault();
     const isChanged =
-      currentUser.name !== userName || currentUser.about !== userInfo;
+      currentUser.name !== values.name || currentUser.about !== values.about;
 
     if (isChanged) {
-      onUpdateUser({
-        name: userName,
-        about: userInfo,
-      });
+      onUpdateUser(values);
     } else {
       onClose();
     }
   };
-  const clearInput = () => setTimeout(setCurrentUserData, 240);
 
   useEffect(() => {
     setCurrentUserData();
-  }, [currentUser]);
-
-  useEffect(() => {
-    clearInput();
-  }, [isOpen]);
+  }, [currentUser, isOpen]);
 
   return (
     <PopupWithForm
@@ -54,33 +45,33 @@ const EditProfilePopup = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
     >
       <div className="popup__form-field">
         <input
-          value={userName}
-          onChange={handleNameChange}
+          value={values.name}
+          onChange={handleChange}
           className="popup__form-input popup__form-input_data_name"
           type="text"
-          id="profile-name"
-          name="userName"
+          id="name-profile"
+          name="name"
           placeholder="Имя"
           minLength="2"
           maxLength="40"
           required
         />
-        <span className="popup__form-error popup__form-error_data_profile-name"></span>
+        <span className="popup__form-error popup__form-error_data_profile-name" />
       </div>
       <div className="popup__form-field">
         <input
-          value={userInfo}
-          onChange={handleInfoChange}
+          value={values.about}
+          onChange={handleChange}
           className="popup__form-input popup__form-input_data_desc"
           type="text"
-          id="profile-desc"
-          name="userDescription"
+          id="about-profile"
+          name="about"
           placeholder="Вид деятельности"
           minLength="2"
           maxLength="200"
           required
         />
-        <span className="popup__form-error popup__form-error_data_profile-desc"></span>
+        <span className="popup__form-error popup__form-error_data_profile-desc" />
       </div>
     </PopupWithForm>
   );

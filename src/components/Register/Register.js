@@ -1,42 +1,17 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import * as auth from '../../utils/auth.js';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useForm } from '../../hooks/useForm';
+import Spinner from '../Spinner/Spinner';
 
-const Register = ({ onCallInfoTooltip }) => {
-  const navigate = useNavigate();
-
-  const [formValue, setFormValue] = useState({
+const Register = ({ onSubmit, isLoading }) => {
+  const { values, handleChange } = useForm({
     email: '',
     password: '',
   });
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-
-    setFormValue({
-      ...formValue,
-      [name]: value,
-    });
-  };
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    if (!formValue.email || !formValue.password) {
-      return;
-    }
-
-    auth
-      .register(formValue.email, formValue.password)
-      .then(data => {
-        if (data.email !== undefined) {
-          localStorage.setItem('email', data.email);
-          navigate('signin', { replace: true });
-          onCallInfoTooltip({ isError: false });
-        } else {
-          onCallInfoTooltip({ isError: true });
-        }
-      })
-      .catch(console.error);
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    onSubmit(values);
   };
   return (
     <div className="auth">
@@ -48,7 +23,7 @@ const Register = ({ onCallInfoTooltip }) => {
           name="email"
           type="email"
           placeholder="Email"
-          value={formValue.email}
+          value={values.email}
           onChange={handleChange}
           className="auth__form-input"
         />
@@ -58,12 +33,16 @@ const Register = ({ onCallInfoTooltip }) => {
           name="password"
           type="password"
           placeholder="Пароль"
-          value={formValue.password}
+          value={values.password}
           onChange={handleChange}
           className="auth__form-input"
         />
-        <button type="submit" onSubmit={handleSubmit} className="auth__button">
-          Зарегистрироваться
+        <button
+          type="submit"
+          className={`auth__button ${isLoading ? 'auth__button_disabled' : ''}`}
+          disabled={isLoading}
+        >
+          {isLoading ? <Spinner /> : 'Зарегистрироваться'}
         </button>
       </form>
       <Link to="/signin" className="auth__link">

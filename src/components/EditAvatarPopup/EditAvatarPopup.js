@@ -1,13 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 
 const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
-  const [userAvatar, setUserAvatar] = useState('');
   const inputRef = useRef();
 
-  const handleAvatarChange = evt => {
-    setUserAvatar(evt.target.value);
-  };
   const handleSubmit = evt => {
     evt.preventDefault();
 
@@ -19,10 +15,9 @@ const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
       onClose();
     }
   };
-  const clearInput = () => setTimeout(setUserAvatar, 240, '');
 
   useEffect(() => {
-    clearInput();
+    inputRef.current.value = ''
   }, [isOpen]);
 
   return (
@@ -38,8 +33,6 @@ const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
     >
       <div className="popup__form-field">
         <input
-          value={userAvatar}
-          onChange={handleAvatarChange}
           ref={inputRef}
           className="popup__form-input popup__form-input_data_user-avatar"
           type="url"
@@ -48,7 +41,7 @@ const EditAvatarPopup = ({ isOpen, onClose, onUpdateAvatar, isLoading }) => {
           placeholder="Ссылка на аватар пользователя"
           required
         />
-        <span className="popup__form-error popup__form-error_data_user-avatar"></span>
+        <span className="popup__form-error popup__form-error_data_user-avatar" />
       </div>
     </PopupWithForm>
   );
